@@ -6,11 +6,12 @@ const { todos } = require("./models/Todos");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(cors());
-
+require("dotenv").config();
+const mongoDbUser = process.env.mongoDbUser;
+const mongoDbPassword = process.env.mongoDbPassword;
 mongoose
   .connect(
-    "mongodb+srv://tahira:130199hH@code-academy.ws58g7e.mongodb.net/todosApi"
+    `mongodb+srv://${mongoDbUser}:${mongoDbPassword}@code-academy.ws58g7e.mongodb.net/todosApi`
   )
   .then((res) => {
     console.log("Connect!");
